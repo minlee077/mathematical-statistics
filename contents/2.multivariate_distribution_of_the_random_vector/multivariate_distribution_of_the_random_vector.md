@@ -148,7 +148,7 @@ $$E(X^rY^s)=
 
 >하나의 PD에서와 같이 Joint moment generating function은 유사한 방식으로 전개된다.
 $$e^{t_1X}e^{t_2Y}=\sum_{r=0}^{\infty}\frac{(t_1X)^r}{r!}\sum_{s=0}^{\infty}\frac{(t_2Y)^s}{s!}$$
-$$E(e^{t_1X+t_2Y})=\sum_{r=0}^{\infty}\sum_{s=0}^{\infty}\frac{E(X^rY)^s}{r!s!}t_1^rt_2^s$$
+$$E(e^{t_1X+t_2Y})=\sum_{r=0}^{\infty}\sum_{s=0}^{\infty}\frac{E(X^rY^s)}{r!s!}t_1^rt_2^s$$
 Joint MGF는 Joing Moment를 생성하며, Joint PD를 결정하는 성질을 갖는다.
 
 ## Joint MGF 정의
@@ -168,13 +168,13 @@ E(e^{t_1X+t_2Y})=M(t_1,t_2)=\sum_{r=0}^\infty\sum_{s=0}^\infty\frac{E(X^rY^s)}{r
 -h_1<t_1<h_1, -h_2<t_2<h_2(\exist h_1>0,h_2>0)
 $$
 (2) (분포 결정성)
-두 이차원 확률변수 (X_1,x_2)와 (Y_1,Y_2)의 Joint MGF가 0을 포함하는 열린구간들에서 일치 즉, $$M_{X_1,X_2}(t_1,t_2)=M_{Y_1,Y_2}(t_1,t_2)\forall t_i: -h_i<t_i<h_i (\exist h_i>0)(i=1,2)$$
+두 이차원 확률변수 $(X_1,x_2)$와 $(Y_1,Y_2)$의 Joint MGF가 0을 포함하는 열린구간들에서 일치 즉, $$M_{X_1,X_2}(t_1,t_2)=M_{Y_1,Y_2}(t_1,t_2)\forall t_i: -h_i<t_i<h_i (\exist h_i>0)(i=1,2)$$
 이면,$(X_1,X_2)$와 $(Y_1,Y_2)$의 PD가 일치한다. 즉, Joint PDF와 Joint CDF가 일치한다.
 
 ## Joint CGF 정의
 > Joint MGF가 $M(t_1,t_2)$가 존재하면,
 $$C(t_1,t_2)=logM(t_1,t_2)=logE(e^{t_1X+t_2Y}), -h_i<t_i<h_i(\exist h_i>0)(i=1,2)$$
-를 Joint CGF(cumuland generating function)라고 한다.
+를 Joint CGF(cumulant generating function)라고 한다.
 $$
 C(t_1,t_2)=\sum_{r=0,r+s\ge 1}^{\infty}\sum_{s=0}^{\infty}\frac{C^{(r,s)}(0,0)}{r!s!}t_1^rt_2^s\newline
 C^{(r,s)}(0,0)=[\frac{\partial^{r+s}}{\partial t_1^r\partial t_2^s}]_{t_1=0,t_2=0}
@@ -251,7 +251,7 @@ $$\mu_{2|1}(x)=E(Y|X=x)=
 >$$E(g(X,Y|X=x)=\begin{cases}\sum_yg(x,y)f_{2|1}(y|x)\space \space (if \space discrete) \\ \int_{-\infty}^{+\infty}g(x,y)f_{2|1}(y|x)dy \space\space (if \space continuous)\end{cases}$$
 conditional expected value of $Y$, given $X=x$
 
-## Condtional Variance
+## Conditional Variance
 >$$
 \begin{aligned}
 Var(Y|X=x)&=E[(Y-\mu_{2|1}(x))^2|X=x)]\\
@@ -261,18 +261,18 @@ Var(Y|X=x)&=E[(Y-\mu_{2|1}(x))^2|X=x)]\\
 \end{aligned}
 $$
 
-## Condtional Expectation의 성질 및 유도식
+## Conditional Expectation의 성질 및 유도식
 >(1) $E[c_1g_1(Y)+c_2g_2(Y)|X=x]=c_1E[g_1(Y)|X=x]+c_2E[g_2(Y)|X=x]$
-(2) $E[c(X)g(Y)|X=x]=c(X)E[g(Y)|X=x]$
-(3) $g_1(Y)\le g_2(Y)이면, E[g_1(Y)|X=x]\le E[g_2(Y)|X=x]$
+(2) $E[c(X)g(Y)|X=x]=c(X)E[g(Y)|X=x]$ * X에 대한 확률변수이나 기댓값은 y에 대해 적분을 수행하므로 자명
+(3) $g_1(Y)\le g_2(Y)이면, E[g_1(Y)|X=x]\le E[g_2(Y)|X=x]$ 
 $$Var(Y|X=x)=E(Y^2|X=x)-\{E(Y|X=x)\}^2$$
->conditional mean $\mu_{2|1}(x)=E(Y|X=x)=E(Y|X)$는 확률변수 X의 값 x에 따라 그 값이 정해지는 함수이다. 따라서, $\mu_{2|1}(x)$는 X의 분포에 따라 $\mu_{2|1}(x)$ 값들을 가지는 새로운 확률변수 이다. 이러한 확률변수를 X가 주어진 조건에서 Y의 Condtional mean이라 한다.
+>conditional mean $\mu_{2|1}(x)=E(Y|X=x)=E(Y|X)$는 확률변수 X의 값 x에 따라 그 값이 정해지는 함수이다. 따라서, $\mu_{2|1}(x)$는 X의 분포에 따라 $\mu_{2|1}(x)$ 값들을 가지는 새로운 확률변수 이다. 이러한 확률변수를 X가 주어진 조건에서 Y의 Conditional mean이라 한다.
 마찬가지로 conditional variance는 $\sigma_{2|1}^2(x)=Var(Y|X=x)=Var(Y|X)$로, X의 분포에 따라 결정되는 확률변수이다.
 
 ## 확률변수로서의 Conditional Expectation $E[g(Y)|X]$
 >X=x인 조건에서 g(Y)의 conditional Expectation을
 $$h(x)=E[g(Y)|X=x]=E[g(Y)|X]=h(X)$$
-라고 할 때, X의 분포에 따라 $h(x)$ 값들을 가지는 확률변수를 X가 주어진 조건에서 g(Y)의 Condtional Expectation이라 한다.
+라고 할 때, X의 분포에 따라 $h(x)$ 값들을 가지는 확률변수를 X가 주어진 조건에서 g(Y)의 Conditional Expectation이라 한다.
 
 ## Conditional Expectation의 성질
 > (1)$E[E(Y|X)]=E(Y), \space E(Y)=E[E[Y|X]]$
@@ -293,14 +293,14 @@ E(Z|X)=E(Y|X)-E\{E(Y|X)|X\}=E(Y|X) - E(Y|X)=0 \newline \because E(Y|X)=g(X), \sp
 E(Z)=E[E(Z|X)]=E(0)=0
 $$
 $$\begin{aligned}
-Cov(Z,v(X))&=E(Zv(X))-E(Z)E(v(X)) \\
-&=E\{E(Zv(X)|X)\} \space \because E(Z)=0, \space\space E(f(Z,X)=Y)=E\{E(f(Z,X)=Y|X)\}...(1)\\
-&=E\{v(X)E(Z|X)\}\\
+Cov(Z,v(X))&=E(Zv(X))-E(Z)E(v(X)) \space \because E(Z)=0 \\
+&=E\{E(Zv(X)|X)\} \\
+&=E\{v(X)E(Z|X)\} \space \because  E(Z|X)=0...(1)\\
 &=0=Cov(Y-E(Y|X),v(X))
 \end{aligned}$$
 
 ## 회귀함수
-> Condtional Expectation $E(Y|X)$는 두 확률변수 Y와 X 사이의 관계를 설명하는 데에 특별한 의미를 가진다. 특히나, $E(Y|X)$는 Y를 예측하는 가장 좋은 X의 함수를 의미하는 회귀함수라고 한다.
+> Conditional Expectation $E(Y|X)$는 두 확률변수 Y와 X 사이의 관계를 설명하는 데에 특별한 의미를 가진다. 특히나, $E(Y|X)$는 Y를 예측하는 가장 좋은 X의 함수를 의미하는 회귀함수라고 한다.
 $least \space square \space predictor$
 확률변수 X의 함수 $u(X)$로서 $E[(Y-u(X))^2]$를 최소로 하는 함수는 E(Y|X)이다. 즉,
 $$E[(Y-E(Y|X))^2]\le E[(Y-u(X))^2], \space \forall u(X) $$
