@@ -364,3 +364,99 @@ $$Cov(X,Y)=0 \space \space \space *$$
 if, \space X,\space Y \space are \space independent\newline
 Var(X+Y)=Var(X)+Var(Y)
 $$
+
+## 다차원 확률변수의 분포
+### 정의
+> Random Variable $X_1,X_2,...,X_k$를 각 Entry로 하는 vector $(X_1,X_2,...,X_k)^t$를 k-차원 Random Variable 혹은 $k \space variate \space random \space vector$라고 한다.
+
+#### Multivariate Random Variable Joint PDF (discrete)
+>(a)$f(x_1,...,x_k)\ge 0 \space \forall x_i: -\infty \le x_i \le +\infty \space (i=1,2,...,k)$
+$f(x_1,...,x_k)=0\space \forall x_i \not\in \{x_{i1}, x_{i2},...\} \space (i=1,2,...,k)$
+(b)$\displaystyle\sum_{x_1}...\displaystyle\sum_{x_k}f(x_1,...,x_k)=1$
+(c)$\displaystyle\sum_{x_1:a_1\le x_1\le b_1}...\displaystyle\sum_{x_k:a_k\le x_k\le b_k}f(x_1,...,x_k)=P(a_1\le X_1\le b_1,...,a_k\le X_k\le b_k)$
+
+#### Multivariate Random Variable Joint PDF (continuous)
+>(a)$f(x_1,...,x_k)\ge 0 \space \forall x_i: -\infty<x_i<+\infty$
+(b)$\int_{-\infty}^{+\infty}...\int_{-\infty}^{+\infty}f(x_1,...,x_k)dx_k...dx_1=1$
+(c)$\int_{-a_1}^{+b_1}...\int_{-a_k}^{+b_k}f(x_1,...,x_k)dx_k...dx_1=P(a_1\le X_1\le b_1,...,a_k\le X_k\le b_k)$
+
+#### Marginal PDF
+>Multivariate Random Variable $(X_1,X_2,...,X_k)^t$의 Joint PDF가 $f(x_1,...,x_k)$일때, $X_1$과 $(X_1,X_2)^t$의 Marginal PDF $f_1(x)$와 $f_{1,2}(x,y)$는 각각 다음과 같이 주어진다.
+(a)$f_1(x)=
+\begin{cases}
+\sum_{x_2}...\sum_{x_k}f(x,x_2,...,x_k)\\
+\int_{-\infty}^{+\infty}...\int_{-\infty}^{+\infty}f(x,x_2,...,x_k)dx_k...dx_2
+\end{cases}$
+\
+(b)$f_{1,2}(x,y)=
+\begin{cases}
+\sum_{x_3}...\sum_{x_k}f(x,y,x_3,...,x_k)\\
+\int_{-\infty}^{+\infty}...\int_{-\infty}^{+\infty}f(x,y,x_3,...,x_k)dx_k...dx_3
+\end{cases}$
+
+#### Function of Random Vector's Expectation의 정의
+> random vector $(X_1,...,X_k)^t$의 Joint PDF가 $f(x_1,...,x_k)$일 때, 실수 값 함수 $g(x_1,...,x_k)$에 대해
+$$
+\begin{cases}
+\sum_{x_1}...\sum_{x_k}g(x_1,...,x_k)f(x_1,...,x_k)\\
+\int_{-\infty}^{+\infty}...\int_{-\infty}^{+\infty}g(x_1,...,x_k)f(x_1,...,x_k)dx_k...dx_1
+\end{cases}
+$$
+가 실수로 정의되면 그 값을 $g(X_1,...,X_k)$의 기댓값($E[g(X_1,...,X_k)]$)이라 한다.
+
+#### Expectation의 성질
+>(선형성)
+$E[c_1g_1(X_1,...,X_k)+c_2g_2(X1,...,X_k)]=c_1E[g_1(X_1,...,X_k)]+c_2E[g_2(X_1,...,X_k)]$
+
+#### Mean & Variance Matrix의 정의
+> 분포의 특성을 나타내기 위해 각 변수의 Mean과 Variance를 이용하며, 변수 사이의 특성은 Covariance을 통해 나타낸다.
+random vector $X=(X_1,...,X_k)^t$의 성분들인 $X_1,...,X_k$의 Mean, Variance, Covariance인
+$$\mu_i=E(X_i), \sigma_{i,j}=Cov(X_i,X_j)\space (i,j=1,2,...,k)$$
+를 대응하는 원소로 갖는 벡터와 행렬을 각각 X의 mean vector, variance-covariance matrix라고 한다. 간단히 X의 mean, variance matrix라고도 표현하며, 다음과 같이 정의한다.
+$$E(X)=(\mu_1,...,\mu_k)^t=(E(X_1),...,E(X_k))^t$$
+$$Var(X)=
+\begin{pmatrix}
+\sigma_{1,1}...\sigma_{x_1,k}\\
+... \space ...\space ... \\
+\sigma_{k,1}...\sigma_{x_k,x_k}
+\end{pmatrix}= (Cov(X_i,X_j))_{1\le i,j \le k}$$
+
+#### Mean & Variance Matrix의 성질
+>확률변수의 행렬 $V=(V_{i,j}), W=(W_{i,j})$에 대해 다음이 성립
+\
+(a) $E(CWD)=CE(W)D $  (C,D는 모든 원소가 상수인  행렬)
+(b) $E(V+W)=E(V)+E(W)$
+
+#### Covariance Matrix의 정의
+>$X=(X_1,...,X_k)^t$의 평균을 $\mu =(\mu_1,...,\mu_k)^t$라고 하면
+$$(X-\mu)(X-\mu)^t=((X_i-\mu_i)(X_j-\mu_j))$$
+이므로, X의 variance matrix를 다음과 같이 나타낼 수 있다.
+$$Var(X)=(Cov(X_i,X_j))=(E[(X_i-\mu_i)(X_j-\mu_j)])=E[(X-\mu)(X-\mu)^t]$$
+또한, variance matrix를 일반화하여 $X=(X_1,...,X_k)^t$와 $Y=(Y_1,...,Y_l)^t$의 covariance matrix를
+$$Cov(X,Y)=(Cov(X_i,X_j))_{1\le i\le k, 1\le j \le l} \space (k\times l)$$
+라고 정의하며, $Y=(Y_1,...,Y_l)^t$의 평균을 $\eta=(\eta_1,...,\eta_l)^t$라고 하여 covariance matrix를
+$$Cov(X,Y)=(Cov(X_i,Y_j))=(E[(X_i-\mu_i)(Y_j-\eta_j)])=E[(X-\mu)(Y-\eta)^t]$$
+와 같이 나타낼 수 있다.
+
+#### Mean Vector와 Covariance Matrix의 성질
+>$A, C$는 상수의 행렬, $b, d$는 상수의 벡터 일때,
+(a) $E(AX+b)=AE(X)+b$
+(b) $Var(AX+b)=AVar(X)A^t$
+(c) $Cov(AX+b,CY+d)=ACov(X,Y)C^t$
+(d) $Cov(X+Y,Z)=Cov(X,Z)+Cov(Y,Z)$,
+$Cov(X,Z+W)=Cov(X,Z)+Cov(X,W)$
+(e) $Cov(Y,X)=(Cov(X,Y))^t,\space Var(X)=Cov(X,X)$
+(f) $Var(X+Y)=Var(X)+Var(Y)+Cov(X,Y)+Cov(Y,X)$
+
+>$(Proof)$
+(b)$Var(AX+b)=E[(AX-\mu)(AX-\mu)^t] = AVar(X)A^t$
+(c)$Cov(AX+b,CX+d)=E[(AX-\mu_x)(CY-\mu_y)^t]=ACov(X,Y)C^t$
+
+#### Variance Matrix의 성질
+> $X=(X_1,...,X_k)^t$의 variance matrix $Var(X)$는 음이 아닌 nonnegative definite의 symmetric matrix이다. 즉
+$$Var(X)=(Var(X))^t, \space a^tVar(X)a\ge,\space \forall a\in R^k$$
+$$\because a^tVar(X)a = Var(a^tX)\ge0, \forall a\in R^k$$
+
+
+#### *Definite Matrix
+> 선형대수에서, 스칼라가 0이 아닌 모든 실수 열벡터에 대해, 즉 임의의 $a^t$에 대해 $a^tM(X)a$의 부호가 결정정적인 Matix M을 의미한다.
