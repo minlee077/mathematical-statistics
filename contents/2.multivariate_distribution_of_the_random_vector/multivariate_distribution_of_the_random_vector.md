@@ -103,6 +103,12 @@ Covariance는 두 변수가 각각의 기준인 평균으로부터 변화하는 
 >> Correlation coefficient는 Covariance가 두 변수의 변화 관계의 방향과 크기를 표현해주지만, 수치의 크기가 측정단위에 의존하는 문제가 있어 측정 단위에 기인한 규모의 차이인지 변화량의 크기에 기인한 것인지를 구분하기 어려운 문제가 있다.
 따라서, 각 변수의 측정 단위로 인한 규모 변화를 방지하고자, 표준편차로 나누어 줌으로써 표준화된 Covariance를 의미한다.
 
+>>* 참고사항
+회귀계수는 두 변수 간에 원인과 결과의 직선적 관계를 설명하며, 상관계수는 두 변수 간 직선적 상관관계의 강도만을 나타낸다. 따라서 상관계수를 가지고 원인과 결과의 관계를 설명할 수 없으며 해서도 안된다. 예를 들면 벼 시비실험에서 분얼수(새끼 친 수)와 간장 간에는 높은 정상관이 있으나, 이것을 가지고 분얼수가 많아지는 것은 간장이 길어진 효과 때문이라든지, 간장이 길어진 것은 분얼수가 많아진 효과 때문이라고 해석해서는 안 된다. 왜냐하면 분얼수와 간장이 함께 증가한 것은 시비량을 증가시켰기 때문이다. 이와 같이 두 변수 사이에 제3의 요인이 관여하여 생긴 상관관계를 무의미상관(nonsense correlation)이라고 한다.
+상관계수가 0일 때 이것은 두 변수 간에 단지 직선적 관계가 없다는 뜻이며, 두 변수 사이에 관계가 전혀 없다는 의미는 아니다. 두 변수 간에 직선적 관계가 없어도 곡선적 관계는 얼마든지 있을 수 있다.
+회귀분석이 유의해도 그것이 원인과 결과의 관계가 아닌 경우도 있다. 예컨대 연도별 농가인구와 농업소득과의 관계는 비록 통계적으로 유의하더라도 실제는 별다른 의미가 없는 것이다.
+(*출처: [상관분석(correlation analysis)](http://blog.naver.com/PostView.nhn?blogId=jindog2929&logNo=10121175752))
+
 ## Covariance의 성질과 계산 공식
 
 >(1) $Cov(X,Y) = Cov(Y,X), Cov(X,X)=Var(X)$   
@@ -308,6 +314,13 @@ $$E[(Y-E(Y|X))^2]\le E[(Y-u(X))^2], \space \forall u(X) $$
 $$E[(Y-E(Y|X))^2]=E\{E[(Y-E(Y|X))^2|X]\} = E[Var(Y|X)] \newline
 \because E[(Y-\mu_{2|1}(x))^2|X=x]=E[Y|X=x]$$
 
+>>* 참고사항
+회귀계수는 두 변수 간에 원인과 결과의 직선적 관계를 설명하며, 상관계수는 두 변수 간 직선적 상관관계의 강도만을 나타낸다. 따라서 상관계수를 가지고 원인과 결과의 관계를 설명할 수 없으며 해서도 안된다. 예를 들면 벼 시비실험에서 분얼수(새끼 친 수)와 간장 간에는 높은 정상관이 있으나, 이것을 가지고 분얼수가 많아지는 것은 간장이 길어진 효과 때문이라든지, 간장이 길어진 것은 분얼수가 많아진 효과 때문이라고 해석해서는 안 된다. 왜냐하면 분얼수와 간장이 함께 증가한 것은 시비량을 증가시켰기 때문이다. 이와 같이 두 변수 사이에 제3의 요인이 관여하여 생긴 상관관계를 무의미상관(nonsense correlation)이라고 한다.
+상관계수가 0일 때 이것은 두 변수 간에 단지 직선적 관계가 없다는 뜻이며, 두 변수 사이에 관계가 전혀 없다는 의미는 아니다. 두 변수 간에 직선적 관계가 없어도 곡선적 관계는 얼마든지 있을 수 있다.
+회귀분석이 유의해도 그것이 원인과 결과의 관계가 아닌 경우도 있다. 예컨대 연도별 농가인구와 농업소득과의 관계는 비록 통계적으로 유의하더라도 실제는 별다른 의미가 없는 것이다.
+(*출처: [상관분석(correlation analysis)](http://blog.naver.com/PostView.nhn?blogId=jindog2929&logNo=10121175752))
+
+
 ## 분산의 분해
 >$$Var(Y)=E[Var(Y|X)]+Var[E(Y|X)]$$
 $\because Y-\mu = (Y-E(Y|X))\oplus(E(Y|X)-\mu) $
@@ -460,3 +473,99 @@ $$\because a^tVar(X)a = Var(a^tX)\ge0, \forall a\in R^k$$
 
 #### *Definite Matrix
 > 선형대수에서, 스칼라가 0이 아닌 모든 실수 열벡터에 대해, 즉 임의의 $a^t$에 대해 $a^tM(X)a$의 부호가 결정정적인 Matix M을 의미한다.
+
+## Multivariate Random Variable's Joint Moment, Joint MGF
+>$E(|X_1^{r_1}...X_k^{r_k}|)<+\infty$일 때
+$$E(X_1^{r_1}...X_k^{r_k})=
+\begin{cases}
+\sum_{x_1}...\sum_{x_k}x_1^{r_1}...x_k^{r_k}f(x_1,...,x_k)\\\\
+\int_{-\infty}^{+\infty}...\int_{-\infty}^{+\infty}x_1^{r_1}...x_k^{r_k}f(x_1,...,x_k)dx_k...dx_1
+\end{cases}$$
+를 $X=(X_1,...,X_k)^t$의 $(r_1,...,r_k)$차 joint moment($m_{r_1,...,r_k}(X_1,...,X_k)$ or $m_{r_1,...,r_k}$)라고 한다.
+
+>0을 포함하는 열린구간들의 $t_1,...,t_k$값에 대해 $E(e^{e_1X_1+e_2X_2+...+e_kX_k})$가 실수일 때, 함수
+$$M(t_1,...,t_k)=E(e^{t_1X_1+...+t_kX_k}), \space -h_i<t_i<h_i, \space(\exist h_i> 0)(i=1,..,k)$$
+를 $X=(X_1,...,X_k)^t$의 Joint MGF라고 한다.
+
+### Joint MGF의 성질
+>(joint moment 생성)
+Multivariate Random Variable $X =(X_1,...,X_k)^t$의 Joint MGF가 존재하면, 즉
+$$M(t_1,...,t_k)=E(e^{t_1X_1+...+t_kX_k})<+\infty, \space -h_i<t_i<h_i, (\exist h_i>0)(i=1,...,k)$$
+이면, $X=(X_1,...,X_k)^t$의 모든 joint moment가 존재하고
+$$E(X^{r_1}...X_k^{r_k})=[\frac{\partial^{r_1+...+r_k}}{\partial t_1^{r_1}...\partial t_k^{r_k}}]_{t_1=...=t_k=0}$$
+$$M(t_1,...,t_k)=\sum_{r_1=0}^\infty ... \sum_{r_k=0}^\infty \frac{E(X_1^{r_1}...X_k^{r_k})}{r_1!...r_k!}t_1^{r_1}...t_k^{r_k}$$
+$$-h_i<t_i<h_i (\exist h_i>0)(i=1,...,k)$$
+(분포 결정성)
+$X=(X_1,...,X_k)^t, Y=(Y_1,...,Y_k)$의 MGF $M_{X_1,...,X_k}(t_1,...,t_k), M_{Y_1,...,Y_k}(t_1,...,t_k)$가 존재하고 0을 포함한 열린구간 에서 일치하면, 즉
+$$M_{X_1,...,X_k}(t_1,...,t_k)= M_{Y_1,...,Y_k}(t_1,...,t_k)$$
+이면, X와 Y의 확률분포가 일치, 즉 $X=(X_1,...,X_k)^t$와 $Y=(Y_1,...,Y_k)^t$의 Joint PDF와 Joint CDF가 일치한다.
+
+##Joint CGF
+>2차원과 동일하게 정의된다.
+$$C(t_1,...,t_k)=logM(t_1,...,t_k)=logE(e^{t_1X_1+...+t_kX_k})$$
+를 $X=(X_1,...,X_k)^t$의 Joint CGF라고 한다. 마찬가지로 미분과 멱급수전개를 통해 2차항까지 전개하면 mean과 variance matrix를 쉽게 구할 수 있다.
+$$[\frac{\partial}{\partial t_i}C(t_1,...,t_k)]_{t_1=...=t_k=0}=E[X_i]$$
+$$[\frac{\partial^2}{\partial t_i \partial t_j}C(t_1,...,t_k)]_{t_1=...=t_k=0}=Cov(X_i,X_j)$$
+$$C(t)=logM(t)=logE(e^{t_1X_1+...+t_kX_k})$$
+C(t)의 gradient vector를 $\dot{C}(t) $ Hessian matrix를 $\ddot{C}(t)$라고 하면
+$$C(t)=\dot{C}(0)^tt+\frac{1}{2}t^t\ddot{C}(0)+..., E(X)=\dot{C}(0), Var(X)=\ddot{C}(0)$$
+$* \dot{C}(0)=\begin{pmatrix}\frac{\partial}{\partial t_1}C(0)\\ ... \\ \frac{\partial}{\partial t_k}C(0)   \end{pmatrix}
+=
+\begin{pmatrix}E(X_1)\\...\\E(X_k)\end{pmatrix}$
+
+## Multivariate Random Variable에 대한 Condtional PDF
+> Multivariate Random Variance X,Y에 대해, X와 Y의 Joint PDF가 $f_{X,Y}(x,y)$이고 X의 marginal PDF가 $f_X(x)$일 때, $X=x$인 조건에서 Y의 Condtional PDF는
+$$f_{Y|X}(y|x)=\frac{f_X(x)}{f_{X,Y}(x,y)}(x:f_X(x)>0)$$
+
+## Condtional Expectation
+> $X=x$인 조건에서 $Y$의 Condtional PDF가 $f_{X|Y}(y|x)$일 때, $X=x$인 조건에서 실수 값 함수 $g(X,Y)$의 condtional expectation을 다음과 가이 정의한다.
+$$E(g(X,Y)|X=x)=\begin{cases}
+\sum_{y_1}...\sum_{y_l}g(x,y_1,...,y_l)f_{Y|X}(y_1,...,y_l|x)\\
+\int_{-\infty}^{+\infty}...\int_{-\infty}^{+\infty}g(x,y_1,...,y_k)f_{Y|X}(y_1,...,y_l|x)dy_l...dy_1
+\end{cases}$$
+
+### Condtional Expectation의 성질
+>(a) $E[E(Y|X)]=E(Y)$
+(b)$Cov(Y-E(Y|X),v(X))=0, \space \forall v(X)$
+
+## Variance Matrix 분해
+> $Var(Y) = E[Var(Y|X)]+Var[E(Y|X)]$
+\
+$(Proof)$
+$$Cov(Y=E(Y|X),E(Y|X))=0 \space \because E(Y|X)=v(X)\newline
+Var(Y)= Var[(Y-E(Y|X))\oplus E(Y|X)] = Var(Y-E(Y|X))+Var(E(Y|X))$$
+$let \space W=Y-E(Y|X)$
+$$E(WW^t|X)=E[(Y=E(Y|X))(Y=E(Y|X))^t|X]=Var(Y|X)$$이므로,
+$$Var(W)=E(WW^t)=E[E(WW^t|X)]=E[Var(Y|X)]\newline
+\therefore Var(Y)=Var(W)+Var[E(Y|X)]=E[Var(Y|X)]+Var[E(Y|X)]$$
+
+## Multivariate Random Variable의 Least Squares Predictor
+>Multivariate Random Variable $X$의 벡터 값 함수 $u(X)=(u_1(X),...,u_k(X))^t$로서
+$$E[||Y-u(X)||^2]=E[(Y_1-u_1(X))^2+...+(Y_k-u_k(X))^2]$$
+을 최소로 하는 벡터 값 함수 $u(X)$는 $E(Y|X)=(E(Y_1|X),...,E(Y_k|X))^t$이다.
+$$E[||Y-E(Y|X)||^2]\le E[||Y-u(X)||^2], \space \forall u(X)$$
+
+## Multivariate Random Variable의 Independence
+> $X_1,...,X_n$이 서로 독립일 필요 충분조건
+(a) PDF
+$$pdf_{1,...,n}(x_1,...,x_n)=pdf_1(x_1)...pdf_n(x_n),\space \forall x_i(i=1,...,n)$$
+(b) MGF
+$$mgf_{1,...,n}(t_1,...,t_n)=mgf_1(t_1)...mgf_n(t_n),\newline
+\forall t_i: ||t_i|| < h_i(\exist h_i>0)(i=1,...,n)$$
+>> 두 확률변수의 독립성을 판단할때와 마찬가지로 marginal PDF나 marginal MGF를 반드시 구할 필요는 없다. 즉,
+$$pdf_{1,...,n}(x_1,...,x_n)=g_1(x_1)...g_n(x_n),\space \forall \space (i=1,...,n) \newline
+mgf_{1,...,n}(t_1,...,t_n)=m_1(t_1)...m_n(t_n), \newline
+\forall t_i : ||t_i|| <h_i (\exist h_i>0)(i=1,...,n)
+$$
+>
+>>또한, 여러 개의 서로 독립인 Multivariate Random Variable $X_1,...,X_n$에 대해서도 다음과 같은 성질을 만족한다.
+(a)$X_1,...,X_n$인 각각의 함수인 $g_1(X_1),...,g_n(X_n)$도 서로 독립이다.
+(b)$g_1,...,g_n$에 대하여
+$$E[g_1(X_1)...g_n(X_n)]=E[g_1(X_1)]...E[g_n(X_n)]$$
+(c) $$Cov(X_i,X_j)=0 (i\not=j) (i,j=1,...,n)$$
+(d)$$Var(X_1+...+X_n)=Var(X_1)+...+Var(X_n)$$
+$$\begin{aligned} \because Var(X_1+...+X_n)&=Cov(\sum_{i=1}^nX_i,\sum_{j=1}^nX_j)\\
+&=\sum_{i=1}^n\sum_{j=1}^nCov(X_i,X_j) \space \because Cov(X+Y,Z)=Cov(X,Z)+Cov(Y,Z)
+\end{aligned} $$
+(e)$$mgf_{X_1+...+X_n}(t)=mgf_{X_1}(t)...mgf_{X_n}(t)$$
+
