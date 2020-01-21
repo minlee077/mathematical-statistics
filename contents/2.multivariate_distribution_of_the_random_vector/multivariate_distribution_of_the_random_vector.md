@@ -119,9 +119,10 @@ Covariance는 두 변수가 각각의 기준인 평균으로부터 변화하는 
 $$V=aX+b, W=cY+d$$라고 하면
 $$V-E(V)=a(X-\mu_1),W-E(W)=c(Y-\mu_2)$$
 $$\begin{aligned}
-Cov(X,Y)&=E[\{V-E(V)\}\{W-E(W)\}]\\
+Cov(V,W)&=E[\{V-E(V)\}\{W-E(W)\}]\\
 &=E[a(X-\mu_1)c(Y-\mu_2)]\\
-&=acE[(X-\mu_1)(X-\mu_2)]
+&=acE[(X-\mu_1)(X-\mu_2)]\\
+&=acCov(X,Y)
 \end{aligned}$$
 
 ## Correlation coefficient($\rho$)의 성질
@@ -155,7 +156,7 @@ $$E(X^rY^s)=
 >하나의 PD에서와 같이 Joint moment generating function은 유사한 방식으로 전개된다.
 $$e^{t_1X}e^{t_2Y}=\sum_{r=0}^{\infty}\frac{(t_1X)^r}{r!}\sum_{s=0}^{\infty}\frac{(t_2Y)^s}{s!}$$
 $$E(e^{t_1X+t_2Y})=\sum_{r=0}^{\infty}\sum_{s=0}^{\infty}\frac{E(X^rY^s)}{r!s!}t_1^rt_2^s$$
-Joint MGF는 Joing Moment를 생성하며, Joint PD를 결정하는 성질을 갖는다.
+Joint MGF는 Joint Moment를 생성하며, Joint PD를 결정하는 성질을 갖는다.
 
 ## Joint MGF 정의
 >0을 포함하는 열린구간들의 $t_1,t_2$값에 대하여 $E(e^{t_1X+t_2Y})$가 실수일 때, 함수
@@ -185,10 +186,10 @@ $$
 C(t_1,t_2)=\sum_{r=0,r+s\ge 1}^{\infty}\sum_{s=0}^{\infty}\frac{C^{(r,s)}(0,0)}{r!s!}t_1^rt_2^s\newline
 C^{(r,s)}(0,0)=[\frac{\partial^{r+s}}{\partial t_1^r\partial t_2^s}]_{t_1=0,t_2=0}
 $$
-$C^{(r,s)}(0,0)$을 (X,Y)의 (r+s)차의 (r,s)번째 joint cumlant,
+$C^{(r,s)}(0,0)$을 (X,Y)의 (r+s)차의 (r,s)번째 joint cumulant,
 기호: $c_{r,s}(X,Y)$또는 $c_{r,s}$
 
-> joint cumlant와 joint moment의 관계를 통해
+> joint cumulant와 joint moment의 관계를 통해
 $$
 \begin{aligned}
 c_{1,0}&=m_{1,0}=E(X) \\
@@ -332,7 +333,7 @@ $Cov(Y-E(Y|X,E(Y|X)))=0$
 확률변수 X가 어떠한 범위의 값을 갖든 확률변수 Y에 관한 사건의 가능성에 아무런 영향을 주지 않는 경우. 즉 a,b,c,d값에 상관없이
 $$P(C\le Y \;e d|a \le X\le b)=P(c \le Y \le d)$$
 $$P(a\le X\le b,c\le Y \le d)= P(a\le X\le b)P(c\le Y \le d) \forall a,b,c,d$$
-가 성립하는 경우로서, X에 관한 어떠한 사건도 Y에 관한 사건과 서로 독립이다. 두 확률변수 x와 Y가 $mutally\space independent$라고 한다.
+가 성립하는 경우로서, X에 관한 어떠한 사건도 Y에 관한 사건과 서로 독립이다. 두 확률변수 x와 Y가 $mutually\space independent$라고 한다.
 
 ## Probabiltiy Function에서의 독립성
 >(1)Joint CDF $cdf_{1,2}(x,y)=cdf_1(x)cdf_2(y)$
@@ -446,7 +447,7 @@ $$(X-\mu)(X-\mu)^t=((X_i-\mu_i)(X_j-\mu_j))$$
 이므로, X의 variance matrix를 다음과 같이 나타낼 수 있다.
 $$Var(X)=(Cov(X_i,X_j))=(E[(X_i-\mu_i)(X_j-\mu_j)])=E[(X-\mu)(X-\mu)^t]$$
 또한, variance matrix를 일반화하여 $X=(X_1,...,X_k)^t$와 $Y=(Y_1,...,Y_l)^t$의 covariance matrix를
-$$Cov(X,Y)=(Cov(X_i,X_j))_{1\le i\le k, 1\le j \le l} \space (k\times l)$$
+$$Cov(X,Y)=(Cov(X_i,Y_j))_{1\le i\le k, 1\le j \le l} \space (k\times l)$$
 라고 정의하며, $Y=(Y_1,...,Y_l)^t$의 평균을 $\eta=(\eta_1,...,\eta_l)^t$라고 하여 covariance matrix를
 $$Cov(X,Y)=(Cov(X_i,Y_j))=(E[(X_i-\mu_i)(Y_j-\eta_j)])=E[(X-\mu)(Y-\eta)^t]$$
 와 같이 나타낼 수 있다.
@@ -462,8 +463,8 @@ $Cov(X,Z+W)=Cov(X,Z)+Cov(X,W)$
 (f) $Var(X+Y)=Var(X)+Var(Y)+Cov(X,Y)+Cov(Y,X)$
 
 >$(Proof)$
-(b)$Var(AX+b)=E[(AX-\mu)(AX-\mu)^t] = AVar(X)A^t$
-(c)$Cov(AX+b,CX+d)=E[(AX-\mu_x)(CY-\mu_y)^t]=ACov(X,Y)C^t$
+(b)$Var(AX+b)=E[(AX-A\mu)(AX-A\mu)^t] = AVar(X)A^t$
+(c)$Cov(AX+b,CX+d)=E[(AX-A\mu_x)(CY-C\mu_y)^t]=ACov(X,Y)C^t$
 
 #### Variance Matrix의 성질
 > $X=(X_1,...,X_k)^t$의 variance matrix $Var(X)$는 음이 아닌 nonnegative definite의 symmetric matrix이다. 즉
@@ -532,10 +533,11 @@ $$E(g(X,Y)|X=x)=\begin{cases}
 > $Var(Y) = E[Var(Y|X)]+Var[E(Y|X)]$
 \
 $(Proof)$
-$$Cov(Y=E(Y|X),E(Y|X))=0 \space \because E(Y|X)=v(X)\newline
-Var(Y)= Var[(Y-E(Y|X))\oplus E(Y|X)] = Var(Y-E(Y|X))+Var(E(Y|X))$$
+$$Cov(Y-E(Y|X),E(Y|X))=0 \space \because E(Y|X)=v(X)$$
+이므로, 
+$$Var(Y)= Var[(Y-E(Y|X))\oplus E(Y|X)] = Var(Y-E(Y|X))+Var(E(Y|X)) \because Cov=0 $$
 $let \space W=Y-E(Y|X)$
-$$E(WW^t|X)=E[(Y=E(Y|X))(Y=E(Y|X))^t|X]=Var(Y|X)$$이므로,
+$$E(WW^t|X)=E[(Y-E(Y|X))(Y-E(Y|X))^t|X]=Var(Y|X)$$이므로,
 $$Var(W)=E(WW^t)=E[E(WW^t|X)]=E[Var(Y|X)]\newline
 \therefore Var(Y)=Var(W)+Var[E(Y|X)]=E[Var(Y|X)]+Var[E(Y|X)]$$
 
