@@ -326,12 +326,12 @@ $$E[(Y-E(Y|X))^2]=E\{E[(Y-E(Y|X))^2|X]\} = E[Var(Y|X)] \newline
 >$$Var(Y)=E[Var(Y|X)]+Var[E(Y|X)]$$
 $\because Y-\mu = (Y-E(Y|X))\oplus(E(Y|X)-\mu) $
 $ E[(Y-\mu)^2]=E[(Y-E(Y|X))^2]-2Cov(Y-E(Y|X),E(Y|X))+E[(E(Y|X)-\mu)^2]=E[Var(X|Y)]+Var(E(Y|X))$
-$Cov(Y-E(Y|X,E(Y|X)))=0$
+$Cov(Y-E(Y|X),E(Y|X)))=0$
 
 # 확률변수의 독립성
 >정의
 확률변수 X가 어떠한 범위의 값을 갖든 확률변수 Y에 관한 사건의 가능성에 아무런 영향을 주지 않는 경우. 즉 a,b,c,d값에 상관없이
-$$P(C\le Y \;e d|a \le X\le b)=P(c \le Y \le d)$$
+$$P(C\le Y \le d|a \le X\le b)=P(c \le Y \le d)$$
 $$P(a\le X\le b,c\le Y \le d)= P(a\le X\le b)P(c\le Y \le d) \forall a,b,c,d$$
 가 성립하는 경우로서, X에 관한 어떠한 사건도 Y에 관한 사건과 서로 독립이다. 두 확률변수 x와 Y가 $mutually\space independent$라고 한다.
 
@@ -514,18 +514,18 @@ $* \dot{C}(0)=\begin{pmatrix}\frac{\partial}{\partial t_1}C(0)\\ ... \\ \frac{\p
 =
 \begin{pmatrix}E(X_1)\\...\\E(X_k)\end{pmatrix}$
 
-## Multivariate Random Variable에 대한 Condtional PDF
-> Multivariate Random Variance X,Y에 대해, X와 Y의 Joint PDF가 $f_{X,Y}(x,y)$이고 X의 marginal PDF가 $f_X(x)$일 때, $X=x$인 조건에서 Y의 Condtional PDF는
-$$f_{Y|X}(y|x)=\frac{f_X(x)}{f_{X,Y}(x,y)}(x:f_X(x)>0)$$
+## Multivariate Random Variable에 대한 Conditional PDF
+> Multivariate Random Variance X,Y에 대해, X와 Y의 Joint PDF가 $f_{X,Y}(x,y)$이고 X의 marginal PDF가 $f_X(x)$일 때, $X=x$인 조건에서 Y의 Conditional PDF는
+$$f_{Y|X}(y|x)=\frac{f_{X,Y}(x,y)}{f_X(x)}(x:f_X(x)>0)$$
 
-## Condtional Expectation
-> $X=x$인 조건에서 $Y$의 Condtional PDF가 $f_{X|Y}(y|x)$일 때, $X=x$인 조건에서 실수 값 함수 $g(X,Y)$의 condtional expectation을 다음과 가이 정의한다.
+## Conditional Expectation
+> $X=x$인 조건에서 $Y$의 Conditional PDF가 $f_{X|Y}(y|x)$일 때, $X=x$인 조건에서 실수 값 함수 $g(X,Y)$의 Conditional expectation을 다음과 가이 정의한다.
 $$E(g(X,Y)|X=x)=\begin{cases}
 \sum_{y_1}...\sum_{y_l}g(x,y_1,...,y_l)f_{Y|X}(y_1,...,y_l|x)\\
 \int_{-\infty}^{+\infty}...\int_{-\infty}^{+\infty}g(x,y_1,...,y_k)f_{Y|X}(y_1,...,y_l|x)dy_l...dy_1
 \end{cases}$$
 
-### Condtional Expectation의 성질
+### Conditional Expectation의 성질
 >(a) $E[E(Y|X)]=E(Y)$
 (b)$Cov(Y-E(Y|X),v(X))=0, \space \forall v(X)$
 
